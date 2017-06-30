@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchNotes } from '../actions';
 import _ from 'lodash';
-import { ListGroup, ListGroupItem } from 'react-bootstrap';
+import { Grid, ListGroup, ListGroupItem } from 'react-bootstrap';
 
 class NotesIndex extends Component {
 
@@ -20,10 +20,10 @@ class NotesIndex extends Component {
 
   render() {
     return (
-      <div>
+      <Grid>
         <h3>Notes</h3>
         <ListGroup>{this.renderNotes()}</ListGroup>
-      </div>
+      </Grid>
     );
   }
 }

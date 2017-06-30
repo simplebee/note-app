@@ -1,14 +1,15 @@
 import React from 'react';
-import { BrowserRouter, Route } from 'react-router-dom';
+import { BrowserRouter, Route , Switch} from 'react-router-dom';
 import NotesIndex from './notes-index';
-import { Grid } from 'react-bootstrap';
+import NotesNew from './notes-new';
 
 function App() {
   return (
     <BrowserRouter>
-      <Grid>
+      <Switch>
+        <Route path="/notes/new" component={NotesNew}/>
         <Route path="/" component={NotesIndex}/>
-      </Grid>
+      </Switch>
     </BrowserRouter>
   );
 }
