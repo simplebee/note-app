@@ -1,20 +1,36 @@
 import React, { Component } from 'react';
-import { Grid } from 'react-bootstrap';
-import { Field, reduxForm} from 'redux-form';
+import { Grid, FormGroup, FormControl, ControlLabel } from 'react-bootstrap';
+import { Field, reduxForm } from 'redux-form';
+import '../styles/notes-new.css';
 
 class NotesNew extends Component {
-  renderField(field) {
-    const { input, type, label } = field;
+  renderInputField(field) {
+    const { input, type, placeholder, label, id } = field;
 
     return (
-      <div>
-        <label>{label}</label>
-        <input
+      <FormGroup controlId={id}>
+        <ControlLabel>{label}</ControlLabel>
+        <FormControl
           {...input}
           type={type}
-          placeholder={label}
+          placeholder={placeholder}
         />
-      </div>
+      </FormGroup>
+    );
+  }
+
+  renderTextareaField(field) {
+    const { input, placeholder, label, id } = field;
+
+    return (
+      <FormGroup controlId={id}>
+        <ControlLabel>{label}</ControlLabel>
+        <FormControl
+          {...input}
+          componentClass="textarea"
+          placeholder={placeholder}
+        />
+      </FormGroup>
     );
   }
   
@@ -24,21 +40,24 @@ class NotesNew extends Component {
         <form>
           <Field
             name="title"
-            component={this.renderField}
+            component={this.renderInputField}
             type="text"
             label="Title"
+            id="input-title"
           />
           <Field
             name="categories"
-            component={this.renderField}
+            component={this.renderInputField}
             type="text"
             label="Categories"
+            id="input-categories"
           />
           <Field
             name="content"
-            component={this.renderField}
-            type="text"
+            component={this.renderTextareaField}
+            placeholder="Type something here..."
             label="Content"
+            id="input-content"
           />
         </form>
       </Grid>
