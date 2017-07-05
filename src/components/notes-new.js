@@ -1,11 +1,16 @@
 import React, { Component } from 'react';
-import { Grid, FormGroup, FormControl, ControlLabel } from 'react-bootstrap';
+import { Grid, FormGroup, FormControl, ControlLabel, Button } from 'react-bootstrap';
 import { Field, reduxForm } from 'redux-form';
 import '../styles/notes-new.css';
 
 class NotesNew extends Component {
+
+  onSubmit(values) {
+    console.log(values);
+  }
+
   renderField(field) {
-    const { input, htmlElement, type, placeholder, label, id, meta: { error, touched } } = field;
+    const { input, meta: { error, touched }, htmlElement, type, placeholder, label, id } = field;
 
     return (
       <FormGroup controlId={id}>
@@ -22,9 +27,11 @@ class NotesNew extends Component {
   }
   
   render() {
+    const { handleSubmit } = this.props;
+
     return (
       <Grid>
-        <form>
+        <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
           <Field
             name="title"
             component={this.renderField}
@@ -49,6 +56,7 @@ class NotesNew extends Component {
             label="Content"
             id="input-content"
           />
+          <Button type="submit">Submit</Button>
         </form>
       </Grid>
     );
@@ -61,11 +69,9 @@ function validate(values) {
   if (!values.title) {
     errors.title = "Please enter a title";
   }
-
   if (!values.categories) {
     errors.categories = "Please enter some categories";
   }
-
   if (!values.content) {
     errors.content = "Please enter some content";
   }
