@@ -4,31 +4,16 @@ import { Field, reduxForm } from 'redux-form';
 import '../styles/notes-new.css';
 
 class NotesNew extends Component {
-  renderInputField(field) {
-    const { input, type, placeholder, label, id, meta: { error, touched } } = field;
+  renderField(field) {
+    const { input, htmlElement, type, placeholder, label, id, meta: { error, touched } } = field;
 
     return (
       <FormGroup controlId={id}>
         <ControlLabel>{label}</ControlLabel>
         <FormControl
           {...input}
+          componentClass={htmlElement}
           type={type}
-          placeholder={placeholder}
-        />
-        {touched && (error && <span>{error}</span>)}
-      </FormGroup>
-    );
-  }
-
-  renderTextareaField(field) {
-    const { input, placeholder, label, id, meta: { error, touched } } = field;
-
-    return (
-      <FormGroup controlId={id}>
-        <ControlLabel>{label}</ControlLabel>
-        <FormControl
-          {...input}
-          componentClass="textarea"
           placeholder={placeholder}
         />
         {touched && (error && <span>{error}</span>)}
@@ -42,21 +27,24 @@ class NotesNew extends Component {
         <form>
           <Field
             name="title"
-            component={this.renderInputField}
+            component={this.renderField}
+            htmlElement="input"
             type="text"
             label="Title"
             id="input-title"
           />
           <Field
             name="categories"
-            component={this.renderInputField}
+            component={this.renderField}
+            htmlElement="input"
             type="text"
             label="Categories"
             id="input-categories"
           />
           <Field
             name="content"
-            component={this.renderTextareaField}
+            component={this.renderField}
+            htmlElement="textarea"
             placeholder="Type something here..."
             label="Content"
             id="input-content"
