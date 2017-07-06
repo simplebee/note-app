@@ -2,3 +2,7 @@
   resize: none;
   height: 200px;
 }
+
+button.btn {
+  margin-right: 10px;
+}

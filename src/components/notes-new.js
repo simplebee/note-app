@@ -1,12 +1,16 @@
 import React, { Component } from 'react';
-import { Grid, FormGroup, FormControl, ControlLabel, Button, HelpBlock } from 'react-bootstrap';
+import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { Field, reduxForm } from 'redux-form';
+import { createNote } from '../actions';
+
+import { Grid, FormGroup, FormControl, ControlLabel, Button, HelpBlock } from 'react-bootstrap';
 import '../styles/notes-new.css';
 
 class NotesNew extends Component {
 
   onSubmit(values) {
-    console.log(values);
+    this.props.createNote(values);
   }
 
   renderField(field) {
@@ -59,7 +63,10 @@ class NotesNew extends Component {
             label="Content"
             id="input-content"
           />
-          <Button type="submit">Submit</Button>
+          <Button type="submit" bsStyle="primary">Save</Button>
+          <Link to="/">
+            <Button bsStyle="danger">Cancel</Button>
+          </Link>
         </form>
       </Grid>
     );
@@ -81,6 +88,8 @@ function validate(values) {
 
   return errors;
 }
+
+NotesNew = connect(null, { createNote })(NotesNew);
 
 export default reduxForm({
   form: 'notes-new-form',
