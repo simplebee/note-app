@@ -18,12 +18,15 @@ export function fetchNotes() {
   };
 }
 
-export function createNote(data) {
+export function createNote(data, callback) {
   axios.post(apiUrl, data, {
     params: {
       key: apiKey
     }
-  });
+  })
+    .then(function(res) {
+      callback();
+    });
 
   return {
     type: CREATE_NOTE

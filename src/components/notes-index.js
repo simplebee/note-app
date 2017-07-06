@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import _ from 'lodash';
 import { fetchNotes } from '../actions';
 
-import { Grid, ListGroup, ListGroupItem, Button} from 'react-bootstrap';
+import { Grid, ListGroup, ListGroupItem, Button } from 'react-bootstrap';
 
 class NotesIndex extends Component {
 

@@ -10,12 +10,13 @@ import '../styles/notes-new.css';
 class NotesNew extends Component {
 
   onSubmit(values) {
-    this.props.createNote(values);
+    this.props.createNote(values, () => {
+      this.props.history.push('/');
+    });
   }
 
   renderField(field) {
     const { input, meta: { error, touched }, htmlElement, type, placeholder, label, id } = field;
-
     const validationState = touched && error ? "error" : null;
 
     return (
@@ -38,6 +39,7 @@ class NotesNew extends Component {
 
     return (
       <Grid>
+        <h3>Add Note</h3>
         <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
           <Field
             name="title"
@@ -89,9 +91,10 @@ function validate(values) {
   return errors;
 }
 
-NotesNew = connect(null, { createNote })(NotesNew);
-
-export default reduxForm({
+NotesNew = reduxForm({
   form: 'notes-new-form',
   validate
 })(NotesNew);
+NotesNew = connect(null, { createNote })(NotesNew);
+
+export default NotesNew;
