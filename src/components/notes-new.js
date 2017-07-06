@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Grid, FormGroup, FormControl, ControlLabel, Button } from 'react-bootstrap';
+import { Grid, FormGroup, FormControl, ControlLabel, Button, HelpBlock } from 'react-bootstrap';
 import { Field, reduxForm } from 'redux-form';
 import '../styles/notes-new.css';
 
@@ -12,8 +12,10 @@ class NotesNew extends Component {
   renderField(field) {
     const { input, meta: { error, touched }, htmlElement, type, placeholder, label, id } = field;
 
+    const validationState = touched && error ? "error" : null;
+
     return (
-      <FormGroup controlId={id}>
+      <FormGroup controlId={id} validationState={validationState}>
         <ControlLabel>{label}</ControlLabel>
         <FormControl
           {...input}
@@ -21,7 +23,8 @@ class NotesNew extends Component {
           type={type}
           placeholder={placeholder}
         />
-        {touched && (error && <span>{error}</span>)}
+        <FormControl.Feedback />
+        {touched && (error && <HelpBlock>{error}</HelpBlock>)}
       </FormGroup>
     );
   }
