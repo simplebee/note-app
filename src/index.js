@@ -8,6 +8,7 @@ import reducers from './reducers';
 import App from './components/app';
 
 import 'bootstrap/dist/css/bootstrap.css';
+import './styles/index.css';
 
 const store = createStore(
   reducers,
@@ -15,7 +16,7 @@ const store = createStore(
 );
 
 ReactDOM.render(
-  <Provider store={ store }>
+  <Provider store={store}>
     <App />
   </Provider>,
   document.getElementById('root')
