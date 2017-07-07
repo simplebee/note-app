@@ -1,4 +1,4 @@
-import { FETCH_NOTES, CREATE_NOTE } from './action-types';
+import { FETCH_NOTES, FETCH_NOTE, CREATE_NOTE } from './action-types';
 import axios from 'axios';
 
 const apiUrl = 'http://reduxblog.herokuapp.com/api/posts';
@@ -13,6 +13,19 @@ export function fetchNotes() {
 
   return {
     type: FETCH_NOTES,
+    payload: request
+  };
+}
+
+export function fetchNote(id) {
+  const request = axios.get(`${apiUrl}/${id}`, {
+    params: {
+      key: apiKey
+    }
+  });
+
+  return {
+    type: FETCH_NOTE,
     payload: request
   };
 }
