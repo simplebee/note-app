@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import _ from 'lodash';
 import { fetchNotes } from '../actions';
 
-import { Grid, ListGroup, ListGroupItem, Button } from 'react-bootstrap';
+import { Grid, ListGroup, ListGroupItem } from 'react-bootstrap';
 
 class NotesIndex extends Component {
 
@@ -23,8 +23,8 @@ class NotesIndex extends Component {
   render() {
     return (
       <Grid>
-        <Link to="/notes/new">
-          <Button className="pull-right" bsStyle="primary">Add a Note</Button>
+        <Link to="/notes/new" className="btn btn-primary pull-right">
+          Add a Note
         </Link>
         <h3>Notes</h3>
         <ListGroup>{this.renderNotes()}</ListGroup>

@@ -5,7 +5,6 @@ import { Field, reduxForm } from 'redux-form';
 import { createNote } from '../actions';
 
 import { Grid, FormGroup, FormControl, ControlLabel, Button, HelpBlock } from 'react-bootstrap';
-import '../styles/notes-new.css';
 
 class NotesNew extends Component {
 
@@ -66,9 +65,7 @@ class NotesNew extends Component {
             id="input-content"
           />
           <Button type="submit" bsStyle="primary">Save</Button>
-          <Link to="/">
-            <Button bsStyle="danger">Cancel</Button>
-          </Link>
+          <Link to="/" className="btn btn-danger">Cancel</Link>
         </form>
       </Grid>
     );

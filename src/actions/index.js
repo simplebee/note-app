@@ -1,5 +1,4 @@
-import { FETCH_NOTES } from './action-types';
-import { CREATE_NOTE } from './action-types';
+import { FETCH_NOTES, CREATE_NOTE } from './action-types';
 import axios from 'axios';
 
 const apiUrl = 'http://reduxblog.herokuapp.com/api/posts';

@@ -8,6 +8,7 @@ import reducers from './reducers';
 import App from './components/app';
 
 import 'bootstrap/dist/css/bootstrap.css';
+import './styles/index.css';
 
 const store = createStore(
   reducers,

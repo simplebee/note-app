@@ -1,0 +1,12 @@
+#input-content {
+  resize: none;
+  height: 200px;
+}
+
+.btn.btn-danger {
+  margin-left: 10px;
+}
+
+.btn.pull-right {
+  margin-top: 16px;
+}
