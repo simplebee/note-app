@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { IndexLinkContainer } from 'react-router-bootstrap';
+import { Link } from 'react-router-dom';
 import { fetchNote } from '../actions'
 
-import { Grid } from 'react-bootstrap';
+import { Grid, Button } from 'react-bootstrap';
 
 class NotesShow extends Component {
   componentDidMount() {
@@ -11,9 +13,20 @@ class NotesShow extends Component {
   }
 
   render() {
-    console.log(this.props.note);
+    const { note } = this.props;
+
+    if (!note) {
+      return (<div>Loading...</div>);
+    }
+
     return (
-      <Grid>show</Grid>
+      <Grid>
+        <Link to="/">Back to home</Link>
+        <Button bsStyle="danger" className="pull-right">Delete</Button>
+        <h3>{note.title}</h3>
+        <p>{note.categories}</p>
+        <p>{note.content}</p>
+      </Grid>
     );
   }
 }

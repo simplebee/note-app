@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { IndexLinkContainer } from 'react-router-bootstrap';
 import { Field, reduxForm } from 'redux-form';
+import { IndexLinkContainer } from 'react-router-bootstrap';
 import { createNote } from '../actions';
 
 import { Grid, FormGroup, FormControl, ControlLabel, Button, HelpBlock } from 'react-bootstrap';
