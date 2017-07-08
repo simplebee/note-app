@@ -1,15 +1,27 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { IndexLinkContainer } from 'react-router-bootstrap';
 import { Link } from 'react-router-dom';
-import { fetchNote } from '../actions'
+import { fetchNote, deleteNote } from '../actions'
 
 import { Grid, Button } from 'react-bootstrap';
 
 class NotesShow extends Component {
+
+  constructor(props) {
+    super(props);
+    this.handleDeleteClick = this.handleDeleteClick.bind(this);
+  }
+
   componentDidMount() {
     const { id } = this.props.match.params;
     this.props.fetchNote(id);
+  }
+
+  handleDeleteClick() {
+    const { id } = this.props.match.params;
+    this.props.deleteNote(id, () => {
+      this.props.history.push('/');
+    });
   }
 
   render() {
@@ -21,11 +33,11 @@ class NotesShow extends Component {
 
     return (
       <Grid>
-        <Link to="/">Back to home</Link>
-        <Button bsStyle="danger" className="pull-right">Delete</Button>
+        <Button bsStyle="danger" className="pull-right" onClick={this.handleDeleteClick}>Delete</Button>
         <h3>{note.title}</h3>
-        <p>{note.categories}</p>
+        <h5>Categories: {note.categories}</h5>
         <p>{note.content}</p>
+        <Link to="/">Back to home</Link>
       </Grid>
     );
   }
@@ -37,4 +49,4 @@ function mapStateToProps(state, ownProps) {
   };
 }
 
-export default connect(mapStateToProps, { fetchNote })(NotesShow);
+export default connect(mapStateToProps, { fetchNote, deleteNote })(NotesShow);
