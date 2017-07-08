@@ -15,8 +15,8 @@ class NotesIndex extends Component {
   renderNotes() {
     return _.map(this.props.notes, (note) => {
       return (
-         <LinkContainer to={`/notes/${note.id}`}>
-          <ListGroupItem key={note.id}>{note.title}</ListGroupItem>
+         <LinkContainer to={`/notes/${note.id}`} key={note.id}>
+          <ListGroupItem>{note.title}</ListGroupItem>
         </LinkContainer>
       );
     });
