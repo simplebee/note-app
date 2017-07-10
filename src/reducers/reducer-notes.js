@@ -6,7 +6,7 @@ export default function notes(state = {}, action) {
     case FETCH_NOTES:
       return _.keyBy(action.payload.data, 'id');
     case FETCH_NOTE:
-      return { [action.payload.data.id]: action.payload.data, ...state };
+      return { ...state, [action.payload.data.id]: action.payload.data };
     case DELETE_NOTE:
       const newState = state;
       delete newState[action.payload];
