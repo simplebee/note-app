@@ -1,4 +1,4 @@
-import { FETCH_NOTES, CREATE_NOTE } from './action-types';
+import { FETCH_NOTES, FETCH_NOTE, CREATE_NOTE, DELETE_NOTE } from './action-types';
 import axios from 'axios';
 
 const apiUrl = 'http://reduxblog.herokuapp.com/api/posts';
@@ -17,6 +17,19 @@ export function fetchNotes() {
   };
 }
 
+export function fetchNote(id) {
+  const request = axios.get(`${apiUrl}/${id}`, {
+    params: {
+      key: apiKey
+    }
+  });
+
+  return {
+    type: FETCH_NOTE,
+    payload: request
+  };
+}
+
 export function createNote(data, callback) {
   axios.post(apiUrl, data, {
     params: {
@@ -29,5 +42,21 @@ export function createNote(data, callback) {
 
   return {
     type: CREATE_NOTE
+  };
+}
+
+export function deleteNote(id, callback) {
+  axios.delete(`${apiUrl}/${id}`, {
+    params: {
+      key: apiKey
+    }
+  })
+    .then(function(res) {
+      callback();
+    });
+
+  return {
+    type: DELETE_NOTE,
+    payload: id
   };
 }

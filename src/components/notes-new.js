@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
 import { Field, reduxForm } from 'redux-form';
+import { IndexLinkContainer } from 'react-router-bootstrap';
 import { createNote } from '../actions';
 
 import { Grid, FormGroup, FormControl, ControlLabel, Button, HelpBlock } from 'react-bootstrap';
@@ -65,7 +65,9 @@ class NotesNew extends Component {
             id="input-content"
           />
           <Button type="submit" bsStyle="primary">Save</Button>
-          <Link to="/" className="btn btn-danger">Cancel</Link>
+          <IndexLinkContainer to="/">
+            <Button bsStyle="danger">Cancel</Button>
+          </IndexLinkContainer>
         </form>
       </Grid>
     );
